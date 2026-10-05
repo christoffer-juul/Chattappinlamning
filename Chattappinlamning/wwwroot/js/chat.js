@@ -4,6 +4,7 @@ var connection;
 var username = "";
 
 document.getElementById("sendButton").disabled = true;
+document.getElementById("messageInput").disabled = true;
 
 document.getElementById("connectButton").addEventListener("click", function () {
     username = document.getElementById("usernameInput").value.trim();
@@ -17,6 +18,14 @@ document.getElementById("connectButton").addEventListener("click", function () {
         .withUrl("/chatHub?username=" + encodeURIComponent(username))
         .build();
 
+    connection.on("ReceiveMessage", function (user, message) {
+    var li = document.createElement("li");
+
+    li.textContent = `${user}: ${message}`;
+
+    document.getElementById("messagesList").appendChild(li);
+    });
+
     connection.start()
         .then(function () {
 
@@ -26,6 +35,7 @@ document.getElementById("connectButton").addEventListener("click", function () {
             document.getElementById("chatContainer").style.display = "block";
 
             document.getElementById("sendButton").disabled = false;
+            document.getElementById("messageInput").disabled = false;
 
         })
         .catch(function (err) {
@@ -48,12 +58,4 @@ document.getElementById("sendButton").addEventListener("click", function (event)
     document.getElementById("messageInput").value = "";
 
     event.preventDefault();
-});
-
-connection.on("ReceiveMessage", function (user, message) {
-    var li = document.createElement("li");
-
-    li.textContent = `${user}: ${message}`;
-
-    document.getElementById("messagesList").appendChild(li);
 });

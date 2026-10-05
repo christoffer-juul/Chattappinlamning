@@ -23,7 +23,7 @@ namespace Chattappinlamning.Hubs
 
         public async Task SendMessage(string message)
         {
-            var username = Context.Items["Username"]?.ToString();
+            var username = Context.Items["username"]?.ToString();
 
             if (string.IsNullOrWhiteSpace(username))
             {
