@@ -1,21 +1,20 @@
 ﻿@page
 <div id="loginContainer">
     <h2>Välkommen till chatten</h2>
-
-    <input type="text" id="usernameInput" placeholder="Användarnamn" />
-
-    <button id="connectButton">Anslut</button>
+    <div class="loginInput">
+        <input type="text" id="usernameInput" placeholder="Användarnamn" />
+        <button id="connectButton">Anslut</button>
+    </div>
 </div>
 
 
-<div id="chatContainer" style="display: none;">
+<div id="chatContainer" class="hidden">
     <h2>Chatt</h2>
-
     <ul id="messagesList"></ul>
-
-    <input type="text" id="messageInput" placeholder="Skriv ett meddelande..." />
-
-    <button id="sendButton">Skicka</button>
+    <div class="messageInput">
+        <input type="text" id="messageInput" placeholder="Skriv ett meddelande..." />
+        <button id="sendButton">Skicka</button>
+    </div>
 </div>
 <script src="~/lib/microsoft/signalr/dist/browser/signalr.js"></script>
 <script src="~/js/chat.js"></script>

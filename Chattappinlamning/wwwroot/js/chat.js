@@ -31,8 +31,8 @@ document.getElementById("connectButton").addEventListener("click", function () {
 
             console.log("SignalR Connected.");
 
-            document.getElementById("loginContainer").style.display = "none";
-            document.getElementById("chatContainer").style.display = "block";
+            document.getElementById("loginContainer").classList.add("hidden");
+            document.getElementById("chatContainer").classList.remove("hidden");
 
             document.getElementById("sendButton").disabled = false;
             document.getElementById("messageInput").disabled = false;
@@ -43,19 +43,32 @@ document.getElementById("connectButton").addEventListener("click", function () {
         });
 });
 
-document.getElementById("sendButton").addEventListener("click", function (event) {
-    var message = document.getElementById("messageInput").value.trim();
+function sendMessage() {
+    var messageInput = document.getElementById("messageInput");
+    var message = messageInput.value.trim();
 
     if (message === "") {
         return;
     }
 
     connection.invoke("SendMessage", message)
+        .then(function () {
+            messageInput.value = "";
+            messageInput.focus();
+        })
         .catch(function (err) {
             console.error(err.toString());
         });
-    
-    document.getElementById("messageInput").value = "";
+}
 
+document.getElementById("sendButton").addEventListener("click", function (event) {
     event.preventDefault();
+    sendMessage();
+});
+
+document.getElementById("messageInput").addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
+        event.preventDefault();
+        sendMessage();
+    }
 });
