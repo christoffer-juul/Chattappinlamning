@@ -7,7 +7,6 @@ namespace Chattappinlamning.Hubs
         public override async Task OnConnectedAsync()
         {
             var httpContext = Context.GetHttpContext();
-
             var username = httpContext?.Request.Query["username"].ToString();
 
             if (string.IsNullOrWhiteSpace(username))
@@ -26,6 +25,11 @@ namespace Chattappinlamning.Hubs
             var username = Context.Items["username"]?.ToString();
 
             if (string.IsNullOrWhiteSpace(username))
+            {
+                return;
+            }
+
+            if (string.IsNullOrWhiteSpace(message))
             {
                 return;
             }

@@ -9,10 +9,14 @@ document.getElementById("messageInput").disabled = true;
 document.getElementById("connectButton").addEventListener("click", function () {
     username = document.getElementById("usernameInput").value.trim();
 
+    const usernameError = document.getElementById("usernameError");
+
     if (username === "") {
-        alert("Du måste ange ett användarnamn.");
+        usernameError.textContent = "Du måste ange ett användarnamn.";
         return;
     }
+
+    usernameError.textContent = "";
 
     connection = new signalR.HubConnectionBuilder()
         .withUrl("/chatHub?username=" + encodeURIComponent(username))
@@ -43,22 +47,25 @@ document.getElementById("connectButton").addEventListener("click", function () {
         });
 });
 
-function sendMessage() {
+async function sendMessage() {
     var messageInput = document.getElementById("messageInput");
     var message = messageInput.value.trim();
+    var chatError = document.getElementById("chatError");
 
     if (message === "") {
         return;
     }
 
-    connection.invoke("SendMessage", message)
-        .then(function () {
-            messageInput.value = "";
-            messageInput.focus();
-        })
-        .catch(function (err) {
-            console.error(err.toString());
-        });
+    try {
+        await connection.invoke("SendMessage", message);
+        messageInput.value = "";
+        messageInput.focus();
+        chatError.textContent = "";
+    }
+    catch (err) {
+        console.error(err.toString());
+        chatError.textContent = "Meddelandet kunde inte skickas.";
+    }
 }
 
 document.getElementById("sendButton").addEventListener("click", function (event) {

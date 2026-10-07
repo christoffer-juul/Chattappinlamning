@@ -168,3 +168,17 @@ body {
 .hidden {
     display: none !important;
 }
+
+#usernameError {
+    color: #ff6b6b;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+#chatError {
+    display: block;
+    color: #ff6b6b;
+    font-size: 14px;
+    min-height: 20px;
+    margin-top: 10px;
+}
