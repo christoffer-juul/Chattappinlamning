@@ -1,31 +1,196 @@
-html {
-  font-size: 14px;
+/* Fonts */
+
+@font-face {
+    font-family: "Archivo";
+    src: url("/fonts/Archivo-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
 }
 
-@media (min-width: 768px) {
-  html {
-    font-size: 16px;
-  }
+@font-face {
+    font-family: "Archivo";
+    src: url("/fonts/Archivo-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+    font-display: swap;
 }
 
-.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
-  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
-}
-
-html {
-  position: relative;
-  min-height: 100%;
-}
+/* Global styling */
 
 body {
-  margin-bottom: 60px;
+    font-family: "Archivo", sans-serif;
+    background-color: #333;
+    color: #fff;
+    margin: 0;
+    padding: 0;
 }
 
-.form-floating > .form-control-plaintext::placeholder, .form-floating > .form-control::placeholder {
-  color: var(--bs-secondary-color);
-  text-align: end;
+/* Login styling */
+
+#loginContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    gap: 15px;
 }
 
-.form-floating > .form-control-plaintext:focus::placeholder, .form-floating > .form-control:focus::placeholder {
-  text-align: start;
+.loginInput {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 10px;
+}
+
+#usernameInput {
+    width: 220px;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-family: Archivo, sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#usernameInput::placeholder {
+    color: #999;
+}
+
+#usernameInput:focus {
+    border-color: #888;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+#usernameInput:-webkit-autofill,
+#usernameInput:-webkit-autofill:hover,
+#usernameInput:-webkit-autofill:focus,
+#usernameInput:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px #222 inset;
+    -webkit-text-fill-color: #fff;
+}
+
+#connectButton {
+    padding: 12px;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-family: Archivo, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#connectButton:hover {
+    background-color: #555;
+}
+
+#connectButton:active {
+    transform: scale(0.97);
+}
+
+/* Chat styling */
+
+#chatContainer {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 80vh;
+    margin: 40px auto;
+    background-color: #222;
+    border-radius: 12px;
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+#messagesList {
+    flex: 1;
+    width: 100%;
+    box-sizing: border-box;
+    list-style-type: none;
+    background-color: #333;
+    border: 1px solid #666;
+    border-radius: 8px;
+    padding: 20px;
+    margin: 0 0 15px 0;
+    overflow-y: auto;
+}
+
+.messageInput {
+    display: flex;
+    width: 100%;
+    gap: 10px;
+}
+
+#messageInput {
+    flex: 1;
+    padding: 12px;
+    box-sizing: border-box;
+    background-color: #222;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-family: Archivo, sans-serif;
+    font-size: 15px;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+#messageInput::placeholder {
+    color: #999;
+}
+
+#messageInput:focus {
+    border-color: #888;
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.08);
+}
+
+#sendButton {
+    padding: 12px;
+    background-color: #444;
+    color: #fff;
+    border: 1px solid #555;
+    border-radius: 8px;
+    font-family: Archivo, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background-color 0.2s ease, transform 0.1s ease;
+}
+
+#sendButton:hover {
+    background-color: #555;
+}
+
+#sendButton:active {
+    transform: scale(0.97);
+}
+
+/* Används av JavaScript för att växla mellan login och chatt. */
+
+.hidden {
+    display: none !important;
+}
+
+/* Error styling */
+
+#usernameError {
+    color: #ff6b6b;
+    font-size: 14px;
+    min-height: 20px;
+}
+
+#chatError {
+    display: block;
+    color: #ff6b6b;
+    font-size: 14px;
+    min-height: 20px;
+    margin-top: 10px;
 }
