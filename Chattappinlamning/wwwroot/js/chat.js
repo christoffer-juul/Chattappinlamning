@@ -32,26 +32,25 @@ document.getElementById("connectButton").addEventListener("click", function () {
     li.textContent = `${user}: ${message}`;
 
     document.getElementById("messagesList").appendChild(li);
+});
+
+//Startar SignalR-anslutningen.
+connection.start()
+    .then(function () {
+        console.log("SignalR Connected.");
+
+        //Döljer login-formuläret och visar chatten när anslutningen lyckas.
+        document.getElementById("loginContainer").classList.add("hidden");
+        document.getElementById("chatContainer").classList.remove("hidden");
+
+        //Aktiverar chattfunktionerna efter lyckad anslutning.
+        document.getElementById("sendButton").disabled = false;
+        document.getElementById("messageInput").disabled = false;
+
+    })
+    .catch(function (err) {
+        console.error(err.toString());
     });
-
-    //Startar SignalR-anslutningen.
-    connection.start()
-        .then(function () {
-
-            console.log("SignalR Connected.");
-
-            //Döljer login-formuläret och visar chatten när anslutningen lyckas.
-            document.getElementById("loginContainer").classList.add("hidden");
-            document.getElementById("chatContainer").classList.remove("hidden");
-
-            //Aktiverar chattfunktionerna efter lyckad anslutning.
-            document.getElementById("sendButton").disabled = false;
-            document.getElementById("messageInput").disabled = false;
-
-        })
-        .catch(function (err) {
-            console.error(err.toString());
-        });
 });
 
 //Skickar meddelandet till ChatHuben via SignalR.
