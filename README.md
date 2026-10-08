@@ -6,7 +6,7 @@ En enkel chattapp byggd med ASP.NET Core, Razor Pages, JavaScript och SignalR. A
 
 1. Klona projektet från GitHub.
 2. Öppna projektet i Visual Studio.
-3. Starta applikationen med HTTPS-profilen.
+3. Starta applikationen med HTTPS-profilen (körs på https://localhost:7048).
 4. Öppna chatten i två webbläsarfönster för att testa med flera användare.
 
 OBS: Om HTTPS-certifikatet inte är betrott behöver du köra följande kommando i terminalen:
