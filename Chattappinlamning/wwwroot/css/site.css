@@ -1,3 +1,5 @@
+/* Fonts */
+
 @font-face {
     font-family: "Archivo";
     src: url("/fonts/Archivo-Bold.ttf") format("truetype");
@@ -14,6 +16,8 @@
     font-display: swap;
 }
 
+/* Global styling */
+
 body {
     font-family: "Archivo", sans-serif;
     background-color: #333;
@@ -21,6 +25,8 @@ body {
     margin: 0;
     padding: 0;
 }
+
+/* Login styling */
 
 #loginContainer {
     display: flex;
@@ -89,6 +95,8 @@ body {
 #connectButton:active {
     transform: scale(0.97);
 }
+
+/* Chat styling */
 
 #chatContainer {
     display: flex;
@@ -165,9 +173,13 @@ body {
     transform: scale(0.97);
 }
 
+/* Används av JavaScript för att växla mellan login och chatt. */
+
 .hidden {
     display: none !important;
 }
+
+/* Error styling */
 
 #usernameError {
     color: #ff6b6b;
